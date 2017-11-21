@@ -1,19 +1,19 @@
 
-### UDACUITY: Machine Learning Engineer Nanodegree Program
+## Machine Learning Engineer Nanodegree Program(Udacity)
 
-#### Summary:
+### Summary:
 
-Machine Learning Foundations/MLF version1
+#### Machine Learning Foundations/MLF version1
 
-Supervised
+#### Supervised
 
-Unsupervised
+#### Unsupervised
 
-Reinforcement 
+#### Reinforcement 
 
-Deep Learning/TensorFlow
+#### Deep Learning/TensorFlow
 
-Machine Learning Capstone/Projects
+#### Machine Learning Capstone/Projects
     
     - titanic_survival_exploration
     - Boston_Housing
@@ -25,7 +25,7 @@ Machine Learning Capstone/Projects
     - image-classification
     - intro-to-tensorflow
 
-Career: (Orientation, Job Search Strategies, Networking, ML Interview)
+#### Career: (Orientation, Job Search Strategies, Networking, ML Interview)
 
 -----------------------------------------------------------------------------------------------
 
