@@ -16674,6 +16674,7 @@ $$<p>Here, <code>nb_samples</code> is the number of samples, or number of images
 <p><img src="images/sample_cnn.png" alt="Sample CNN"></p>
 <p><strong>Question 4:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  If you chose to use the hinted architecture above, describe why you think that CNN architecture should work well for the image classification task.</p>
 <p><strong>Answer:</strong></p>
+<p>Fot hinted architecture above, The multiple layers extract the features from the images by filters halfed in each conv layer. Next, by max pooling layers between, we emphazie the important features. There were also dropout layers to prevent overfitting. In the dense layer, a relu function was used. finally, a softmax for output for the best choice of classification.</p>
 
 </div>
 </div>
@@ -17296,6 +17297,7 @@ test_{network} = bottleneck_features['test']</code></pre>
 </code></pre>
 <p><strong>Question 5:</strong> Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.</p>
 <p><strong>Answer:</strong></p>
+<p>The advantage of Resnet is easy to optimize. it solve the vanishing gradient problem as deeper neural network. while keeping an excellent.</p>
 
 </div>
 </div>
@@ -20364,7 +20366,8 @@ To9xAAAAAElFTkSuQmCC
 <h2 id="Step-7:-Test-Your-Algorithm">Step 7: Test Your Algorithm<a class="anchor-link" href="#Step-7:-Test-Your-Algorithm">&#182;</a></h2><p>In this section, you will take your new algorithm for a spin!  What kind of dog does the algorithm think that <strong>you</strong> look like?  If you have a dog, does it predict your dog's breed accurately?  If you have a cat, does it mistakenly think that your cat is a dog?</p>
 <h3 id="(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">(IMPLEMENTATION) Test Your Algorithm on Sample Images!<a class="anchor-link" href="#(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">&#182;</a></h3><p>Test your algorithm at least six images on your computer.  Feel free to use any images you like.  Use at least two human and two dog images.</p>
 <p><strong>Question 6:</strong> Is the output better than you expected :) ?  Or worse :( ?  Provide at least three possible points of improvement for your algorithm.</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> 
+when one dog in picture, the algorithm seem to be properly functional, but if the two Akita in picture, it was confused with humans. a drawing of human is classified correctly.</p>
 
 </div>
 </div>
