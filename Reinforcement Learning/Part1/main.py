@@ -32,3 +32,15 @@ for i in range(MAX_EPISODES):
     if rl.memory_full:
         rl.learn()
 
+'''
+env:
+state_dim
+action_dim
+action_bound
+env.reset()
+env.render()
+env.steps(a)
+rl:
+rl.DDPG(a_dim,s_dim,a_bound)
+rl.choose_actions(s)
+'''
