@@ -1,9 +1,10 @@
 
 
 class DDPG(object):
-    def __init__(self):
+    def __init__(self,a_dim,s_dim,a_bound):
         pass
-    def choose_action(self,s):
+       
+    def choose_actions(self,s):
         pass
     def learn(self,s):
         pass

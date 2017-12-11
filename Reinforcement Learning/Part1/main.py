@@ -3,6 +3,7 @@ sys.path.append("C:/Users/MLUSER/Documents/GitHub/Udacity/Reinforcement Learning
 
 
 from env import ArmEnv
+import rl
 from rl import DDPG
 
 
@@ -20,7 +21,7 @@ a_bound = env.action_bound
 rl = DDPG(a_dim,s_dim,a_bound)
 
 #start training
-for i in range(MAX_EPSIDODES):
+for i in range(MAX_EPISODES):
     s = env.reset()
     for j in range(MAX_EP_STEPS):
         env.render()
@@ -30,3 +31,4 @@ for i in range(MAX_EPSIDODES):
     
     if rl.memory_full:
         rl.learn()
+
