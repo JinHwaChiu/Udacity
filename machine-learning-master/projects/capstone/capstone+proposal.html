@@ -14983,7 +14983,7 @@ chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/<a href="https://web.stanfor
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h3><p>Use the computer vision to recognize and break the CAPTCHAs, and evaluate how accuracy the model can do by teseting different kinds of images.</p>
+<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h3><p>The problem is a classification of letters by computer vision. Use amounts of CAPTCHAs with various letters' fonts as input data. Becasuse the names of all image files are already labeled, the output results will be the files' names. For example, if input data is "2A2X", the correct output results will be the file's name "2A2X". Furthermore, for computation efficiency, I may split the input images into numbers(0~9) and letters(A~Z), then put each letter into the files with the same name.</p>
 
 </div>
 </div>
@@ -14992,18 +14992,23 @@ chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/<a href="https://web.stanfor
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Datasets-and-Inputs">Datasets and Inputs<a class="anchor-link" href="#Datasets-and-Inputs">&#182;</a></h3><p>To break the  CAPTCHAs, we need to tons of images to train our mode to manually solve them. Fortunately, I found the CAPTCHA samples iamges from the <a href="https://captcha.com/captcha-examples.html">https://captcha.com/captcha-examples.html</a></p>
+<h3 id="Datasets-and-Inputs">Datasets and Inputs<a class="anchor-link" href="#Datasets-and-Inputs">&#182;</a></h3><p>To break the CAPTCHAs, we need to tons of images to train our model to manually solve them. Fortunately, there are CAPTCHA samples from the <a href="https://captcha.com/captcha-examples.html">https://captcha.com/captcha-examples.html</a>
+I download almost 9,000 images as my datatsets. The samples I used are all formated with 72x24 pixels and the backgrounds are all white, which save me lots of time at preprocessing. The postion of numbers and letters are almost at the center of images. Although the vertical position of each number or letter is not the same, the max height and max width of each number or letter are all the same. This characteristic is important if there are glue with each other, like "XWJE" as below. With the glue of both "W" and "J" letters, I can use the characteristic mentioned above to recognize and split the letters.</p>
+<p>After I browsed whole datasets, I can sort images into five classes, all letters, all numbers, one number three letters, two numbers two letters and three numbers one letter. The amount of five classes images are almost random and all letters are capital. Except for all numbers and all letters, the sequence of letters and numbers are also random and there are no sign of dominant class; therefore, I can just randomly split the datasets into training/validation/testing.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MLUSER</span><span class="se">\\</span><span class="s1">Documents</span><span class="se">\\</span><span class="s1">GitHub</span><span class="se">\\</span><span class="s1">Udacity</span><span class="se">\\</span><span class="s1">2A5R.PNG&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MLUSER</span><span class="se">\\</span><span class="s1">Documents</span><span class="se">\\</span><span class="s1">GitHub</span><span class="se">\\</span><span class="s1">Udacity</span><span class="se">\\</span><span class="s1">2A5R.PNG&#39;</span><span class="p">),</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MLUSER</span><span class="se">\\</span><span class="s1">Documents</span><span class="se">\\</span><span class="s1">GitHub</span><span class="se">\\</span><span class="s1">Udacity</span><span class="se">\\</span><span class="s1">XWJE.PNG&#39;</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 
 </div>
@@ -15016,12 +15021,12 @@ chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/<a href="https://web.stanfor
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt"></div>
 
 
 
 
-<div class="output_png output_subarea output_execute_result">
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAYCAIAAADWASznAAAEHUlEQVRYhe2XQUgqbRSGzx3Ka2Bq
 YlFSIiISLQokJARDIqLERUiLClezkIoQEomIaOFCXJi0S0SkwIWUSEGIRESJRJQLGUTKwgazEjEy
 EdFZ5F0IIdfGCaL/vzfuu5vDc8533plvznzzo1wuw3cU8n838FX6Z+xvU8MX1X18fDw+Pp6amvp8
@@ -15048,6 +15053,41 @@ zWQyNBoNRVGhUMjn8zEMi0Qie3t7dcr9OSL9jsXjcbxKZ2dnOI6vrKz8l819Rl9yuv8T9G1/NP8Z
 
 </div>
 
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAYCAIAAADWASznAAAEcUlEQVRYhe1YQUgqXRQ+DcMQImIg
+g08kpCJCQqIiJFqERISImEgERbgICQORaBEh4ULChbSQiCiIkpIQiQhp4aJFhEREhYhJuRCRspII
+EQkRzr+4JFI5+h71/vc//m8hc898Z+795pxz73HqEBH+RlD/9gK+C/8L+yJcX19vbW1NT093dXWt
+r69/40z4u1AoFNra2vh8Ppl3amrqW6f7sojt7Oz8+PGjoaFhbGzs/v6eGIeHh5+ensi1zWYTiUQd
+HR11dXUAUCwWv2rqz1FJ8evr6/Pz893dXTwef35+RsR4PB4MBvf393d3d4+Pjz+6WCwWoVBYGp6c
+nADA0dFRyaJQKAKBgFwuBwCFQvGlEXqPz4XlcrmScoZhPB4PIrrdbrFYDAAsyy4tLX30stlsNE2X
+hlqtFgDcbjcZxuNxiUSCiEajEQBoms7lcl8v6A0VI5ZOpzUaDQDY7faS0eVySSSSTCbzqYvT6QSA
+fD6PiLFYTCKRiEQik8lE7jocDqvViogrKyvklX0a9ko4PT3d2Ng4Pz8nz/91YYiYzWbb2toYhiEr
+SCaTfD7f5/NV4i8vLwNAOp1GxMnJycXFxf7+/t7eXnJXLpefnZ0h4vn5ORHmcrlqF5bP59VqNQDw
+eLyWlha9Xr+wsFCe5z8hDBGj0Sifz2dZNplMajQatVrNQfZ4PAAQj8fT6bRIJHp5eTGbzaTqwuFw
+U1MToRUKhfr6egAwGAy1C0NElUrFsmyhUIjFYj6fr6enZ3Jy8heFIaLf7wcAiUTC4/ESiQQHc29v
+DwAuLi7m5+dnZ2fxLYbJZHJubs5ms5WYSqUSABobG2tXlclkaJouJTYiWiyWWCxWiV/TOWY2mwFA
+r9dz04LBIAAEAgGxWJxKpRDx6OgIAA4PD2UyWTQaLV8TyUaSt7Vgc3OTPKpkyWazHPyahHV3dzMM
+AwAcBYaIoVAIAAYGBoxGI7Gk02mScu82d6/XS4SVL5QbWq2WYRiOEL1DdWFut5tl2aurK7FYzOfz
+I5FIJWYkEgEAiqLKgyMSiSiKcjqd5cybmxsibG1trZZV5nI5Ho8nlUqlUqlAIFAqlaFQiNulirBU
+KiUQCLxeLyKenJwwDNPa2lopBxKJBABotdpyY19fH0VRH4uT7B9+v7+KJkR8q/Pt7W1EvLm5cTgc
+xWKR26WKMIPBUL4TkiNIp9N9Ss5kMjKZLBwOlxtNJtPo6OhHslAopGmalGJVjI+PMwzz8vJSC5mg
+orBMJuNwOEjrQFoqRPT7/Twej4SFHEpVUd5ePD4+Wq3WYDC4uroKNffBhUJBKBQODQ3VQi6horDB
+wUGBQMCyrEwmIzmAiDqdTqPRjIyMTExMHBwc/NRMiGgwGEqdWmdnZ40tFdls31Vj1VD/vr8tiKhS
+qWiaFggEZrOZe7MuwW63t7e3A4DRaAyFQrlcrlgszszMBINBbsc6/LO/eTw8PITD4UgkQn6j0Wix
+WJTL5ZeXl9yOf7qwj7i9vaUoqrm5mZv23xNWI/7ajzn/AIfwxiZjO+ykAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -15065,7 +15105,7 @@ zWQyNBoNRVGhUMjn8zEMi0Qie3t7dcr9OSL9jsXjcbxKZ2dnOI6vrKz8l819Rl9yuv8T9G1/NP8Z
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Solution-Statement">Solution Statement<a class="anchor-link" href="#Solution-Statement">&#182;</a></h3><p>I will use Deep Learning to solve this problem. The reason is that the images features are easy to extracted, by the white backgrounds of all images. Specifically, I will use CNN, which are effective at finding pattrerns by using filters to find specific pixels grouping.</p>
+<h3 id="Solution-Statement">Solution Statement<a class="anchor-link" href="#Solution-Statement">&#182;</a></h3><p>For this kind of image recogition problem, the method flashed into my mind is Convolutional Neural Networks(CNN). Based on the properity of input datasets as mentioned above, at preprocessing step, I will firstly enchance the pixels of letters and numbers images pixels by openCV package, then split each number and letters into same pixels grouping and save them into files named "number(0~9)" or "letter(A~Z)". Secondly, I will map the labels into one-hot encoding by sklearn package. After preprocessing, I will build my CNN model by Keras package with Tensorflow backend. Because the simple complexity of my input datasets, I may just use two convolutional layers to enchance the computaional efficiency.</p>
 
 </div>
 </div>
@@ -15074,7 +15114,7 @@ zWQyNBoNRVGhUMjn8zEMi0Qie3t7dcr9OSL9jsXjcbxKZ2dnOI6vrKz8l819Rl9yuv8T9G1/NP8Z
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Benchmark-Model">Benchmark Model<a class="anchor-link" href="#Benchmark-Model">&#182;</a></h3><p>I plan to use MLP as bechmark models to compare the CNN. The methods are like the MLND projects "cifar10_mlp" and "cifar10_cnn".</p>
+<h3 id="Benchmark-Model">Benchmark Model<a class="anchor-link" href="#Benchmark-Model">&#182;</a></h3><p>I plan to use Multiply Layers Perceptron(MLP) as bechmark models to compare the CNN. The idea is from the MLND projects "cifar10_mlp" and "cifar10_cnn". The CAPTCHAs datasets are well labeled like cifar datasets and even much simplier. I will also use Keras as tool to construct the MLP Model.</p>
 
 </div>
 </div>
@@ -15083,7 +15123,7 @@ zWQyNBoNRVGhUMjn8zEMi0Qie3t7dcr9OSL9jsXjcbxKZ2dnOI6vrKz8l819Rl9yuv8T9G1/NP8Z
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Evaluation-Metrics">Evaluation Metrics<a class="anchor-link" href="#Evaluation-Metrics">&#182;</a></h3><p>The evalustion metrics is simple that I will compare the accuracy of MLP and CNN. the coorect classification of images divide the whole datasets</p>
+<h3 id="Evaluation-Metrics">Evaluation Metrics<a class="anchor-link" href="#Evaluation-Metrics">&#182;</a></h3><p>Fisrt, I may use accuracy to evaluate the CNN and MLP model. Because, in real scenario, there is no tolerance of false judgement rate. Furthermore, The typical CAPTCHAs images, consisted of 0~9 and A~Z, consider  the upper and lower case as the same. Second, the ROC curve I will definitely use as reviewer advice. For MLP and CNN Models, I will test each model by diferent validation folds to verify the rate of true positive versus false positive.</p>
 
 </div>
 </div>
