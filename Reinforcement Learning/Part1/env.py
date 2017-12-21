@@ -20,7 +20,7 @@ class Viewer(pyglet.window.Window):
     def __init__(self):
         super(Viewer,self).__init__(width=400, height=400)
         pyglet.graphics.glClearColor(1,1,1,1)
-
+        
     def render(self):
         
         pass
