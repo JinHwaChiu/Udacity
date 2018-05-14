@@ -59,7 +59,7 @@ class LearningAgent(Agent):
             # self.epsilon = 1.0/(self.t**2)
             self.epsilon = math.fabs(math.cos(self.alpha*self.t))
 
-        return None
+        return None    
 
     def build_state(self):
         """ The build_state function is called when the agent requests data from the 
